@@ -57,3 +57,19 @@ describe('Test if directions are correct', () => {
     expect(direction).toBe(DIRECTIONS_MAP.WEST)
   })
 })
+
+describe('Test if x, y and direction are correct', () => {
+  test('x should be 11, y should be 11 and direction NORTH', async () => {
+    const { body } = await request(app).post('/commands').send({
+      commands: 'FFFFFFFFFFLFFFFFFFFFF',
+      x: 1,
+      y: 1,
+      direction: DIRECTIONS_MAP.EAST,
+    })
+
+    const { x, y, direction } = body
+    expect(x).toBe(11)
+    expect(y).toBe(11)
+    expect(direction).toBe(DIRECTIONS_MAP.NORTH)
+  })
+})
