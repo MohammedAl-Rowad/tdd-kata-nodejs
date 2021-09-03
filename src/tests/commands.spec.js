@@ -89,3 +89,23 @@ describe('Test if x, y will be in negative', () => {
     expect(direction).toBe(DIRECTIONS_MAP.EAST)
   })
 })
+
+describe('Test if the rover will stop', () => {
+  test('The rover should stop due to reaching an obstacle', async () => {
+    const { body } = await request(app)
+      .post('/commands')
+      .send({
+        commands: 'FLF',
+        x: 1,
+        y: 1,
+        direction: DIRECTIONS_MAP.EAST,
+        obstacles: [[2, 2]],
+      })
+
+    const { x, y, direction, status } = body
+    expect(x).toBe(2)
+    expect(y).toBe(1)
+    expect(direction).toBe(DIRECTIONS_MAP.NORTH)
+    expect(status).toBe('STOPPED')
+  })
+})
