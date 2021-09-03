@@ -29,8 +29,8 @@ const handleCommand = (req, res) => {
     for (const c of commands) {
       if (c === 'F' || c === 'B') {
         const [toX, toY] = DIRECTIONS[resDir]
-        xDir += toX
-        yDir += toY
+        resX += toX
+        resY += toY
       } else {
         resDir = calcDirection(resDir, c)
       }
