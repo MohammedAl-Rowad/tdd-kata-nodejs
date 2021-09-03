@@ -36,12 +36,16 @@ const handleCommand = (req, res) => {
     for (const c of commands) {
       if (c === 'F' || c === 'B') {
         const [toX, toY] = DIRECTIONS[resDir]
-        resX += c === 'B' ? -1 * toX : toX
-        resY += c === 'B' ? -1 * toY : toY
+        const xMove = c === 'B' ? -1 * toX : toX
+        const yMove = c === 'B' ? -1 * toY : toY
+
+        resX += xMove
+        resY += yMove
         const key = `${resX}:${resY}`
+
         if (key in obstaclesMap) {
-          resX -= c === 'B' ? -1 * toX : toX
-          resY -= c === 'B' ? -1 * toY : toY
+          resX -= xMove
+          resY -= yMove
           res.send({ x: resX, y: resY, direction: resDir, status: 'STOPPED' })
         }
       } else {
