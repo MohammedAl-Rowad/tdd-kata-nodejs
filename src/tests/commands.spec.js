@@ -77,7 +77,7 @@ describe('Test if x, y and direction are correct', () => {
 describe('Test if x, y will be in negative', () => {
   test('x should be -10, y should be -8 and direction EAST', async () => {
     const { body } = await request(app).post('/commands').send({
-      commands: 'RFFFFFFFFFLBBBBBBBBBB',
+      commands: 'RFFFFFFFFFLBBBBBBBBBBB',
       x: 1,
       y: 1,
       direction: DIRECTIONS_MAP.EAST,
