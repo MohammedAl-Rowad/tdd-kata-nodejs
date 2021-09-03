@@ -26,32 +26,17 @@ const DIRECTIONS = Object.freeze({
   [DIRECTIONS_MAP.SOUTH]: [0, -1],
 })
 
-const calcDirection = (oldDirection, direction) => {
+const calcDirection = (oldDirection) => {
   const { EAST, NORTH, SOUTH, WEST } = DIRECTIONS_MAP
-  if (oldDirection === EAST) {
-    if (direction === 'L') {
-      return NORTH
-    } else {
-      return SOUTH
-    }
-  } else if (oldDirection === NORTH) {
-    if (direction === 'L') {
-      return WEST
-    } else {
-      return EAST
-    }
-  } else if (oldDirection === WEST) {
-    if (direction === 'L') {
-      return SOUTH
-    } else {
-      return NORTH
-    }
-  } else if (oldDirection === SOUTH) {
-    if (direction === 'L') {
-      return EAST
-    } else {
-      return WEST
-    }
+  switch (oldDirection) {
+    case EAST:
+      return (direction) => (direction === 'L' ? NORTH : SOUTH)
+    case WEST:
+      return (direction) => (direction === 'L' ? WEST : EAST)
+    case WEST:
+      return (direction) => (direction === 'L' ? SOUTH : NORTH)
+    case SOUTH:
+      return (direction) => (direction === 'L' ? EAST : WEST)
   }
 }
 

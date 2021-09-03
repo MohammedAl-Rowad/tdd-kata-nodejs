@@ -32,7 +32,7 @@ const handleCommand = (req, res) => {
         resX += c === 'B' ? -1 * toX : toX
         resY += c === 'B' ? -1 * toY : toY
       } else {
-        resDir = calcDirection(resDir, c)
+        resDir = calcDirection(resDir)(c)
       }
     }
     res.send({ x: resX, y: resY, direction: resDir })
