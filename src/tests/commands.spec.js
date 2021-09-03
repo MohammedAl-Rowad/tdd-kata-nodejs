@@ -73,3 +73,19 @@ describe('Test if x, y and direction are correct', () => {
     expect(direction).toBe(DIRECTIONS_MAP.NORTH)
   })
 })
+
+describe('Test if x, y will be in negative', () => {
+  test('x should be -10, y should be -8 and direction EAST', async () => {
+    const { body } = await request(app).post('/commands').send({
+      commands: 'RFFFFFFFFFLBBBBBBBBBB',
+      x: 1,
+      y: 1,
+      direction: DIRECTIONS_MAP.EAST,
+    })
+
+    const { x, y, direction } = body
+    expect(x).toBe(-10)
+    expect(y).toBe(-8)
+    expect(direction).toBe(DIRECTIONS_MAP.EAST)
+  })
+})
